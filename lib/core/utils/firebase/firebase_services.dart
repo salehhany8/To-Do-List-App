@@ -1,14 +1,3 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:todo_list_app/core/data/models/task_data_model.dart';
-
-// class FirebaseServices {
-//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-//   Future<void> addTask(TaskDataModel task) async {
-//     await _firestore.collection('tasks').add(task.toJson());
-//   }
-// }
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:todo_list_app/core/data/models/task_data_model.dart';
 import 'package:todo_list_app/core/utils/constants.dart';

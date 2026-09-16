@@ -27,21 +27,6 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  //Stream<List<TaskDataModel>> getTasks() {
-  //   emit(InitialTaskGettingState()); 
-  //   try {
-  //     emit(LoadingGettingState());
-  //     //throw Exception('testing');
-  //     return firebaseServices.getTasks();
-  //     emit(SuccessGettingState());
-  //   } catch (e) {
-  //     emit(
-  //       FailedToGetState(
-  //         errorMessage: e.toString(),
-  //       ),
-  //     );
-  //   }
-  // }
 
   Stream<List<TaskDataModel>> getTasks() {
   return firebaseServices.getTasks();

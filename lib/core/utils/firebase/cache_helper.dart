@@ -8,9 +8,7 @@ class CacheHelper {
     sharedPre = await SharedPreferences.getInstance();
   }
 
-  // void setUserId({required String userId}){
-  //   sharedPre.setString(Constants.kUserId, userId);
-  // }
+
   Future<void> setUserId({required String userId}) async {
     await sharedPre.setString(
       Constants.kUserId,

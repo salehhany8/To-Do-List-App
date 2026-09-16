@@ -28,19 +28,6 @@ class _TabsManagerState extends State<TabsManager> {
     super.dispose();
   }
 
-  // void _navBarTap(int index){
-  //   setState(() {
-  //     _curIndex =index;  
-  //   });
-
-  //   _pageController.animateToPage(
-  //     index, 
-  //     duration: const Duration(milliseconds: 400), 
-  //     curve: Curves.easeInOut
-  //   );
-    
-  // }
-
   void _onPageChanged (int index){
     setState(() {
       _curIndex =index;

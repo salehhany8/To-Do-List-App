@@ -29,7 +29,7 @@ class _TaskFormState extends State<TaskForm> {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: selectedDate ?? DateTime.now(),
-      firstDate: DateTime(2020),
+      firstDate: DateTime(2005),
       lastDate: DateTime(2060),
     );
 
@@ -47,12 +47,8 @@ class _TaskFormState extends State<TaskForm> {
       date: selectedDate ?? DateTime.now(),
       isDone: false
     );
-
-    //await _firebaseServices.createTask(task);
-    context.read<HomeCubit>().createTask(
-      task: task,
-    );
-    //Navigator.pop(context);
+    
+    context.read<HomeCubit>().createTask(task: task,);
   }
 
   @override
@@ -73,24 +69,18 @@ class _TaskFormState extends State<TaskForm> {
         if (state is SuccessCreationState) {
           await showSuccessDialog(context);
 
-          //if (!context.mounted) return;
-
           Navigator.pop(context);
         }
         if (state is FailedToCteateState) {
-          await showErrorDialog(
-            context,
-            errorMessage: state.errorMessage,
-          );
+          await showErrorDialog(context,errorMessage: state.errorMessage,);
         }
       },
       buildWhen: (previous, current){
          return current is InitialTaskCreationState ||
-            current is LoadingCreationState;
+                current is LoadingCreationState;
       },
-      builder: (context,state){
-        final bool isLoading =
-            state is LoadingCreationState;
+      builder: (context,state){ 
+        final bool isLoading = state is LoadingCreationState;
         return Form(child: 
           Column(
             children: [
@@ -109,21 +99,18 @@ class _TaskFormState extends State<TaskForm> {
                 height: 50,
                 btnColor: ColorManager.successLineColor,
                 onPressed: () => _selectDate(),
-                //()=> _selectDate(), 
                 btnTitle: selectedDate == null ?
                 "choose date 🗓️"
                 : '${selectedDate!.day}/'
                   '${selectedDate!.month}/'
                   '${selectedDate!.year}',
               ),
-              SizedBox(height: 4,),
+              SizedBox(height: 4),
               CustomMainButton(
                 onPressed: (){isLoading ? null 
                 : _saveTask();},
                 btnTitle: isLoading ? "Loading..." :
                 "save",
-                //width: 100,
-                //height: 30,
               )
             ],
           )

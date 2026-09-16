@@ -22,8 +22,6 @@ class AuthServices {
       userId: credential.user?.uid ?? '',
     );
 
-    // cacheHelper.setUserId(userId: credential.user?.uid ?? '');
-    // print(credential.user?.uid ?? "" );
   }
 
 

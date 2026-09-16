@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list_app/core/data/models/task_data_model.dart';
-import 'package:todo_list_app/core/forms/update_task_form.dart';
 import 'package:todo_list_app/core/shared/functions/show_edit_task_dialog.dart';
 import 'package:todo_list_app/core/style/color_manager.dart';
 import 'package:todo_list_app/features/home/presentation/manager/home_cubit.dart';
@@ -27,19 +26,10 @@ class _TaskItemState extends State<TaskItem> {
           context: context,
           task: widget.task,
         );
-        // showDialog(
-        //   context: context,
-        //   builder: (context) {
-        //     return UpdateTaskForm(
-        //       task: widget.task,
-        //     );
-        //   },
-        // );
       },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
@@ -78,11 +68,7 @@ class _TaskItemState extends State<TaskItem> {
                                 date: widget.task.date,
                                 isDone: value
                               )
-                          );
-                          // cubit.updateTaskStatus(
-                          //   taskId: task.id!,
-                          //   isDone: value ?? false,
-                          // );
+                          );  
                         },
                       ),
 
@@ -107,9 +93,6 @@ class _TaskItemState extends State<TaskItem> {
                       ),
                     ],
                   ),
-
-                  //const SizedBox(height: 16),
-
                   const Divider(
                     color: Color(0xFFEEEEEE),
                     thickness: 1,
