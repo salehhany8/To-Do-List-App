@@ -85,27 +85,37 @@ class _TaskFormState extends State<TaskForm> {
           Column(
             children: [
               CustomTextFormField(
+                innerColor: ColorManager.white,
+                borderColor: ColorManager.white,
                 controller: _tskNameController, 
                 validator: (value)=> Validators.validateTskName(value),
                 fieldInnerText: "eg : Meeting with client"
               ),
               CustomTextFormField(
+                innerColor: ColorManager.white,
+                borderColor: ColorManager.white,
                 controller: _descController, 
                 validator: (value)=> null,
                 fieldInnerText: "Description"
               ),
-              CustomMainButton(
-                width: 150,
-                height: 50,
-                btnColor: ColorManager.successLineColor,
-                onPressed: () => _selectDate(),
-                btnTitle: selectedDate == null ?
-                "choose date 🗓️"
-                : '${selectedDate!.day}/'
-                  '${selectedDate!.month}/'
-                  '${selectedDate!.year}',
+              Row(
+                mainAxisAlignment: .start,
+                children: [
+                  CustomMainButton(
+                    width: 120,
+                    height: 40,
+                    fontSize: 16,
+                    btnColor: ColorManager.successLineColor,
+                    onPressed: () => _selectDate(),
+                    btnTitle: selectedDate == null ?
+                    "choose date 🗓️"
+                    : '${selectedDate!.day}/'
+                      '${selectedDate!.month}/'
+                      '${selectedDate!.year}',
+                  ),
+                ],
               ),
-              SizedBox(height: 4),
+              SizedBox(height: 50,),
               CustomMainButton(
                 onPressed: (){isLoading ? null 
                 : _saveTask();},

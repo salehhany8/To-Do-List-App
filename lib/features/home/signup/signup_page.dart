@@ -30,13 +30,15 @@ class _SignupPageState extends State<SignupPage> {
     super.dispose();
   }
 
+  final GlobalKey<FormState> _formState = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SuccessAuthState) {
           context.pushReplacement(
-            Routes.homePageRoute,
+            Routes.loginPageRoute,
           );
         }
 
@@ -74,68 +76,75 @@ class _SignupPageState extends State<SignupPage> {
                 height: 30,
               ),
 
-              Padding(
-                padding: const .all(15),
+              Form(
+                key: _formState,
                 child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    Text(
-                      "Email",
-                      style: TextStyles.BlackB16,
+                children: [
+                  Padding(
+                    padding: const .all(15),
+                    child: Column(
+                      crossAxisAlignment: .start,
+                      children: [
+                        Text(
+                          "Email",
+                          style: TextStyles.BlackB16,
+                        ),
+
+                        SizedBox(
+                          height: 6,
+                        ),
+
+                        CustomTextFormField(
+                          controller: _mailController,
+                          validator: (value) =>
+                              Validators.validateEmail(value),
+                          fieldInnerText: "name@example.com",
+                        ),
+
+                        SizedBox(
+                          height: 10,
+                        ),
+
+                        Text(
+                          "Password",
+                          style: TextStyles.BlackB16,
+                        ),
+
+                        SizedBox(
+                          height: 6,
+                        ),
+
+                        CustomTextFormField(
+                          controller: _passController,
+                          isPassword: true,
+                          validator: (value) =>
+                              Validators.validatePassword(value),
+                          fieldInnerText: "Enter your password",
+                        ),
+                      ],
                     ),
+                  ),
 
-                    SizedBox(
-                      height: 6,
-                    ),
+                  SizedBox(
+                    height: 360,
+                  ),
 
-                    CustomTextFormField(
-                      controller: _mailController,
-                      validator: (value) =>
-                          Validators.validateEmail(value),
-                      fieldInnerText: "name@example.com",
-                    ),
-
-                    SizedBox(
-                      height: 10,
-                    ),
-
-                    Text(
-                      "Password",
-                      style: TextStyles.BlackB16,
-                    ),
-
-                    SizedBox(
-                      height: 6,
-                    ),
-
-                    CustomTextFormField(
-                      controller: _passController,
-                      isPassword: true,
-                      validator: (value) =>
-                          Validators.validatePassword(value),
-                      fieldInnerText: "Enter your password",
-                    ),
-                  ],
-                ),
-              ),
-
-              SizedBox(
-                height: 400,
-              ),
-
-              CustomMainButton(
-                onPressed:(){
-                      print('SIGN UP BUTTON PRESSED');
-                        context.read<AuthCubit>()
-                            .createAccount(
-                              email:_mailController.text.trim(),
-                              password:_passController.text,
-                            );
-                      },
-                btnTitle: isLoading
-                    ? "Creating..."
-                    : "Sign Up",
-              ),
+                  CustomMainButton(
+                    onPressed:(){
+                      if (_formState.currentState!.validate()){
+                        context.read<AuthCubit>().createAccount(
+                          email:_mailController.text.trim(),
+                          password:_passController.text,
+                        );
+                      }
+                      
+                    },
+                    btnTitle: isLoading
+                        ? "Creating..."
+                        : "Sign Up",
+                  ),
+                ],
+              ))
             ],
           ),
         );

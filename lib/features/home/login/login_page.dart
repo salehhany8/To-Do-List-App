@@ -32,6 +32,8 @@ class _loginPageState extends State<loginPage> {
     super.dispose();
   }
 
+  final GlobalKey<FormState> _formState = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -75,91 +77,99 @@ class _loginPageState extends State<loginPage> {
               SizedBox(
                 height: 30,
               ),
-
-              Padding(
-                padding: const .all(15),
+              Form(
+                key: _formState,
                 child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    Text(
-                      "Email Address",
-                      style: TextStyles.BlackB16,
-                    ),
-
-                    SizedBox(
-                      height: 6,
-                    ),
-
-                    CustomTextFormField(
-                      controller: _emailController,
-                      validator: (value) =>
-                          Validators.validateEmail(value),
-                      fieldInnerText: "name@example.com",
-                    ),
-
-                    SizedBox(
-                      height: 6,
-                    ),
-
-                    Text(
-                      "Password",
-                      style: TextStyles.BlackB16,
-                    ),
-
-                    SizedBox(
-                      height: 6,
-                    ),
-
-                    CustomTextFormField(
-                      isPassword: true,
-                      controller: _passController,
-                      validator: (value) =>
-                          Validators.validatePassword(value),
-                      fieldInnerText: "Enter your password",
-                    ),
-                  ],
-                ),
-              ),
-
-              SizedBox(
-                height: 330,
-              ),
-
-              Row(
-                mainAxisAlignment: .center,
                 children: [
-                  Text(
-                    "Don't you have an account?",
-                    style: TextStyles.BlackB16,
+                  Padding(
+                    padding: const .all(15),
+                    child: Column(
+                      crossAxisAlignment: .start,
+                      children: [
+                        Text(
+                          "Email Address",
+                          style: TextStyles.BlackB16,
+                        ),
+
+                        SizedBox(
+                          height: 6,
+                        ),
+
+                        CustomTextFormField(
+                          controller: _emailController,
+                          validator: (value) =>
+                              Validators.validateEmail(value),
+                          fieldInnerText: "name@example.com",
+                        ),
+
+                        SizedBox(
+                          height: 6,
+                        ),
+
+                        Text(
+                          "Password",
+                          style: TextStyles.BlackB16,
+                        ),
+
+                        SizedBox(
+                          height: 6,
+                        ),
+
+                        CustomTextFormField(
+                          isPassword: true,
+                          controller: _passController,
+                          validator: (value) =>
+                              Validators.validatePassword(value),
+                          fieldInnerText: "Enter your password",
+                        ),
+                      ],
+                    ),
                   ),
 
-                  CustomTextButton(
-                    onPressed: () {
-                      context.go(
-                        Routes.createAccountRoute,
-                      );
+                  SizedBox(
+                    height: 250,
+                  ),
+
+                  Row(
+                    mainAxisAlignment: .center,
+                    children: [
+                      Text(
+                        "Don't you have an account?",
+                        style: TextStyles.BlackB16,
+                      ),
+
+                      CustomTextButton(
+                        onPressed: () {
+                          context.go(
+                            Routes.createAccountRoute,
+                          );
+                        },
+                        btnTitle: "Sign Up!",
+                        btnColor:
+                            ColorManager.brandPrimaryColor,
+                      ),
+                    ],
+                  ),
+
+                  CustomMainButton(
+                    onPressed:(){
+                      if (_formState.currentState!.validate()){
+                        context.read<AuthCubit>().login(
+                          email: _emailController.text.trim(), 
+                          password: _passController.text.trim()
+                        );
+                      }
                     },
-                    btnTitle: "Sign Up!",
-                    btnColor:
-                        ColorManager.brandPrimaryColor,
+                    btnTitle: isLoading
+                        ? "Logging in..."
+                        : "Next",
                   ),
                 ],
-              ),
-
-              CustomMainButton(
-                onPressed:(){
-                        context.read<AuthCubit>().login(
-                              email:_emailController.text.trim(),
-                              password:_passController.text,
-                            );
-                      },
-                btnTitle: isLoading
-                    ? "Logging in..."
-                    : "Next",
-              ),
+              )),
+              
 
               SizedBox(
-                height: 50,
+                height: 90,
               ),
             ],
           ),

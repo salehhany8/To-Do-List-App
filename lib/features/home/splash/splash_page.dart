@@ -5,6 +5,7 @@ import 'package:todo_list_app/core/style/assets_manager.dart';
 import 'package:todo_list_app/core/style/color_manager.dart';
 import 'package:todo_list_app/core/style/text_styles.dart';
 import 'package:go_router/go_router.dart';
+import 'package:todo_list_app/core/utils/firebase/cache_helper.dart';
 
 class SplashPage extends StatefulWidget {
   const new({super.key});
@@ -14,7 +15,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  
+  static CacheHelper cacheHelper = CacheHelper();
   @override
   void initState() {
     super.initState();
@@ -22,7 +23,9 @@ class _SplashPageState extends State<SplashPage> {
       const Duration(seconds: 1),
       () {
         if (!mounted) return;
-        context.go(Routes.onboardingPageRoute);
+        context.go(
+          cacheHelper.isLoggedin() ?  Routes.homePageRoute : Routes.onboardingPageRoute
+          );
       }
     );
   }

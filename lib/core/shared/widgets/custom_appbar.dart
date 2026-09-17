@@ -21,12 +21,12 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget{
           //crossAxisAlignment: .center,
           children: [
             Text(
-              'Today',
+              'Tody App',
               style: TextStyle(
                 //fontSize: 26,
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF1E1E1E),
+                color: ColorManager.brandPrimaryColor,
               ),
             ),
             SizedBox(height: 6),

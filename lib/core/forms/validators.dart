@@ -14,14 +14,14 @@ class Validators {
       return "this field is Required";
     }
     if (value!.length<8) {
-      return "Password must at least 8 characters";
+      return "Password must be at least 8 characters";
     }
     return null;
   }
 
   static validateTskName(String? value){
     if (value == null || value.trim().isEmpty) {
-      return "this field is Required";
+      return "You can't make empty task name";
     }
     if (value!.length<4) {
       return "task name must at least 4 characters";

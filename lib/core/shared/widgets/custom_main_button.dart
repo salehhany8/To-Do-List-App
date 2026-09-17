@@ -63,11 +63,11 @@ class CustomMainButton extends StatelessWidget {
           children: [
             if (svgIconPath != null) ...[
               SvgPicture.asset(
-                svgIconPath!,
                 // width:width ?? Units.getWidth(context: context, WidgetWidth: 24),
                 // height:height ?? Units.getHeight(context: context, WidgetHeight: 24),
-                width: 24,
-                height: 24,
+                svgIconPath!,
+                width: 25,
+                height: 25,
               ),
               SizedBox(
                 // width: Units.getWidth(context: context, WidgetWidth: 8)
@@ -78,7 +78,7 @@ class CustomMainButton extends StatelessWidget {
               btnTitle,
               style: TextStyle(
                 color: textColor ?? ColorManager.white,
-                fontSize: fontSize ?? Units.getFontSize(context: context, fontsize: 18),
+                fontSize: fontSize ?? 19,
                 fontWeight: CustomFontWeight.semiBold,
               ),
             ),

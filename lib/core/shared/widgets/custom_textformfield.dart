@@ -8,6 +8,9 @@ class CustomTextFormField extends StatefulWidget
   final String fieldInnerText;
   final ValueChanged<String>? onChanged;
   final bool isPassword;
+  final Color? innerColor;
+  final Color? borderColor;
+  
 
 
   const CustomTextFormField({
@@ -16,7 +19,9 @@ class CustomTextFormField extends StatefulWidget
     required this.validator,
     required this.fieldInnerText,
     this.onChanged,
-    this.isPassword =false
+    this.isPassword =false,
+    this.innerColor,
+    this.borderColor
   });
 
   @override
@@ -47,7 +52,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       onChanged: widget.onChanged,
       decoration: InputDecoration(
         filled: true,
-        fillColor: ColorManager.innerTextFieldColor,
+        fillColor: widget.innerColor ?? ColorManager.innerTextFieldColor,
         hintText: widget.fieldInnerText,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 10,
@@ -66,7 +71,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: .circular(10),
-          borderSide: BorderSide(color:Color(0xFFDCDCE8),width: 1),
+          borderSide: BorderSide(color:widget.borderColor ?? Color(0xFFDCDCE8),width: 1),
           
           ),
         focusedBorder: OutlineInputBorder(

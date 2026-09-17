@@ -18,9 +18,9 @@ class AuthServices {
     );
 
 
-    await cacheHelper.setUserId(
-      userId: credential.user?.uid ?? '',
-    );
+    // await cacheHelper.setUserId(
+    //   userId: credential.user?.uid ?? '',
+    // );
 
   }
 
@@ -33,7 +33,7 @@ class AuthServices {
       email: email, 
       password: password
     );
-    await cacheHelper.setUserId(userId: credential.user?.uid ?? '');
+    await cacheHelper.setUserToken(userToken: credential.user?.uid ?? '');
   }
 
 //   Future<void> signInWithGoogle() async {

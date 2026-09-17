@@ -130,6 +130,7 @@ class WelcomePage extends StatelessWidget {
               ),
               SizedBox(height: 40,),
               CustomMainButton(
+                svgIconPath: AssetsManager.mailSvg,
                 width: 340,
                 height: 60,   
                 onPressed: (){
@@ -152,26 +153,24 @@ class WelcomePage extends StatelessWidget {
                 mainAxisAlignment: .center,
                 children: [
                   CustomMainButton(
-                    width: 150,
+                    width: 170,
                     height: 50,
                     onPressed: (){}, 
                     btnTitle: "Facebook",
                     fontSize: 17,
                     btnColor: ColorManager.neutralBackgroundColor,
                     textColor: ColorManager.black,
-                    //svgIconPath: AssetsManager.facebookSvg
+                    svgIconPath: AssetsManager.facebookSvg
                     ),
                     CustomMainButton(
                       width: 160,
                       height: 50,
-                      onPressed: () {
-                        // context.read<AuthCubit>().signInWithGoogle();
-                        // context.pushReplacement(Routes.homePageRoute);
-                      }, 
+                      onPressed: () {}, 
                       btnTitle: "Google",
                       fontSize: 17,
                       btnColor: ColorManager.neutralBackgroundColor,
                       textColor: ColorManager.black,
+                      svgIconPath: AssetsManager.googleSvg,
                     )
                 ],
               )

@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:todo_list_app/core/navigation/routes.dart';
+import 'package:todo_list_app/core/utils/firebase/cache_helper.dart';
 import 'package:todo_list_app/features/home/presentation/tabs_manager.dart';
 import 'package:todo_list_app/features/home/signup/signup_page.dart';
 import 'package:todo_list_app/features/home/splash/splash_page.dart';
@@ -18,6 +19,5 @@ class AppRouter {
     GoRoute(path: Routes.loginPageRoute, builder: (context, state) => const loginPage()),
   ];
   
-
   static GoRouter appRouter = GoRouter(routes: routes, initialLocation: Routes.splashPageRoute);
 }

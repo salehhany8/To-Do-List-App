@@ -9,14 +9,15 @@ class CacheHelper {
   }
 
 
-  Future<void> setUserId({required String userId}) async {
+  Future<void> setUserToken({required String userToken}) async {
     await sharedPre.setString(
-      Constants.kUserId,
-      userId,
+      Constants.kUserToken,
+      userToken,
     );
   }
 
-  String getUserID(){
-    return sharedPre.getString(Constants.kUserId) ?? '';
+  bool isLoggedin(){
+    String currentUserToken = sharedPre.getString(Constants.kUserToken) ?? '';
+    return currentUserToken.isNotEmpty;
   }
 }
